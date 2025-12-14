@@ -4,7 +4,7 @@ import apiMovie from "@/services/apiMovie";
 const PAGE_SIZE = 30;
 const SLIDE_STEP = 3;
 
-const MostPopularFilm = () => {
+const TopRatingFilm = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -19,7 +19,7 @@ const MostPopularFilm = () => {
 
     try {
       setIsLoading(true);
-      const res = await apiMovie.getMostPopularMovie(pageToLoad, PAGE_SIZE);
+      const res = await apiMovie.getTopRatingMovie(pageToLoad, PAGE_SIZE);
       setMovies((prev) => [...prev, ...res.data]);
       setPage(pageToLoad);
     } catch (err) {
@@ -47,7 +47,7 @@ const MostPopularFilm = () => {
 
   return (
     <section className="mb-10">
-      <h3 className="text-lg font-semibold mb-4">Most Popular</h3>
+      <h3 className="text-lg font-semibold mb-4">Top Rating</h3>
 
       <div className="flex justify-center items-center w-full">
         <button
@@ -81,4 +81,4 @@ const MostPopularFilm = () => {
   );
 };
 
-export default MostPopularFilm;
+export default TopRatingFilm;

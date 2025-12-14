@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const NavBar = () => {
   return (
-    <div className="flex items-center justify-between p-2 bg-[#D3E1FC] mt-2">
+    <div className="flex items-center justify-between p-2 bg-nav mt-2">
       <House />
       <div className="flex gap-2">
         <Input

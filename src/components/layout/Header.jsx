@@ -4,7 +4,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 const Header = () => {
   const { theme, setTheme } = useTheme();
   return (
-    <div className="flex justify-between bg-[#F1DBDB] p-3">
+    <div className="flex justify-between bg-header p-3">
       <span>23120205</span>
       <h1 className="font-bold">Movies info</h1>
       <div>
