@@ -12,8 +12,9 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import apiAuth from "@/services/apiAuth";
+import { toast } from "sonner";
 
 const registerSchema = z.object({
   username: z.string().min(3, "Username phải ít nhất 3 ký tự"),
@@ -34,6 +35,7 @@ const Register = () => {
       dob: "",
     },
   });
+  const navigate = useNavigate();
 
   const onSubmit = async (values) => {
     const payload = {
@@ -43,6 +45,15 @@ const Register = () => {
       phone: values.phone,
       dob: values.dob,
     };
+    const response = await apiAuth.register(payload);
+    if (response.user) {
+      toast.success(response.message || "Register successful");
+      form.reset();
+      setTimeout(() => {
+        navigate("/login");
+      }, 500);
+    }
+    toast.error("Register failed!");
   };
 
   return (

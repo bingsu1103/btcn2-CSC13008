@@ -3,7 +3,7 @@ const apiAuth = {
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
     const appToken = import.meta.env.VITE_X_APP_TOKEN;
 
-    const response = await fetch(`${backendUrl}/api/register`, {
+    const response = await fetch(`${backendUrl}/api/users/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
