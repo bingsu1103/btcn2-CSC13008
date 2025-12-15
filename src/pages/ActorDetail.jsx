@@ -42,6 +42,7 @@ const ActorDetail = () => {
     <div className="container mx-auto px-6 py-10 space-y-10">
       <ActorHeader actor={actor} />
       <ActorInfo actor={actor} />
+      <KnownForSection movies={actor.known_for} />
     </div>
   );
 };
