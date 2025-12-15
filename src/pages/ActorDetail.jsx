@@ -6,6 +6,7 @@ import ActorHeader from "@/components/ActorHeader";
 
 import apiPerson from "@/services/apiPerson";
 import ActorInfo from "@/components/ActorInfo";
+import KnownForSection from "@/components/KnownforSection";
 
 const ActorDetail = () => {
   const { id } = useParams();
