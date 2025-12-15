@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import MovieDetail from "@/pages/MovieDetail";
 import ActorDetail from "@/pages/ActorDetail";
 import Movies from "@/pages/Movie";
+import Register from "./pages/Register";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/movies",
         element: <Movies />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
       },
     ],
   },

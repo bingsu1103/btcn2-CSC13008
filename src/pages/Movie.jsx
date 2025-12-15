@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import apiMovie from "@/services/apiMovie";
 import MovieCard from "@/components/MovieCard";
 import Pagination from "@/components/MoviePagination";
@@ -37,6 +37,7 @@ const Movies = () => {
   const onPageChange = (newPage) => {
     setSearchParams({ query, page: newPage });
   };
+  const navigate = useNavigate();
 
   return (
     <div className="p-4">
@@ -50,7 +51,12 @@ const Movies = () => {
 
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
+          <div
+            className="cursor-pointer"
+            onClick={() => navigate(`/movies/${movie.id}`)}
+          >
+            <MovieCard key={movie.id} movie={movie} />
+          </div>
         ))}
       </div>
 
