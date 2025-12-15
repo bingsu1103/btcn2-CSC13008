@@ -38,12 +38,15 @@ const HeroSlider = () => {
   };
 
   const movie = movies[index];
+  const directedToMovies = (id) => {
+    navigate(`/movies/${id}`);
+  };
 
   return (
     <div className="relative flex justify-center mb-12">
       <div
         onClick={() => {
-          navigate(`/movies/${movie.id}`);
+          directedToMovies(movie.id);
         }}
       >
         <img
