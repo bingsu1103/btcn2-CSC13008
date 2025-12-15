@@ -7,7 +7,8 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import MovieDetail from "@/pages/MovieDetail";
 import ActorDetail from "@/pages/ActorDetail";
 import Movies from "@/pages/Movie";
-import Register from "./pages/Register";
+import Register from "@/pages/Register";
+import { AuthContextProvider } from "@/contexts/AuthContext";
 
 const router = createBrowserRouter([
   {
@@ -40,8 +41,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ThemeProvider storageKey="vite-ui-theme">
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <AuthContextProvider>
+      <ThemeProvider storageKey="vite-ui-theme">
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </AuthContextProvider>
   </StrictMode>
 );

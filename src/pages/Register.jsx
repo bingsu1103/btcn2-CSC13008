@@ -13,6 +13,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import apiAuth from "@/services/apiAuth";
 
 const registerSchema = z.object({
   username: z.string().min(3, "Username phải ít nhất 3 ký tự"),
@@ -34,7 +35,7 @@ const Register = () => {
     },
   });
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     const payload = {
       username: values.username,
       email: values.email,
