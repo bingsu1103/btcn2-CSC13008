@@ -82,7 +82,7 @@ const apiMovie = {
     const appToken = import.meta.env.VITE_X_APP_TOKEN;
 
     const response = await fetch(
-      `${backendUrl}/api/movies/${movieId}/review?page=${page}&limit=${limit}&sort=newest`,
+      `${backendUrl}/api/movies/${movieId}/reviews?page=${page}&limit=${limit}&sort=newest`,
       {
         headers: {
           "Content-Type": "application/json",

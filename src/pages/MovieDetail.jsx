@@ -6,6 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import MovieHero from "@/components/MovieHero";
 import MovieOverview from "@/components/MovieOverview";
 import CastSection from "@/components/CastSection";
+import ReviewSection from "@/components/ReviewSection";
 // import ReviewSection from "@/components/ReviewSection";
 
 const MovieDetail = () => {
@@ -44,6 +45,7 @@ const MovieDetail = () => {
       <MovieHero movie={movie} />
       <MovieOverview movie={movie} />
       <CastSection actors={movie.actors} />
+      <ReviewSection />
     </div>
   );
 };
