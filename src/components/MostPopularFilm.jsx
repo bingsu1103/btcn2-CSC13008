@@ -65,13 +65,27 @@ const TopRatingFilm = () => {
 
         <div className="grid grid-cols-3 gap-4 mx-4">
           {visibleMovies.map((movie) => (
-            <div onClick={() => directedToMovies(movie.id)}>
+            <div
+              className="relative group"
+              onClick={() => directedToMovies(movie.id)}
+            >
               <img
                 key={movie.id}
                 src={movie.image}
                 alt={movie.title}
                 className="w-60 rounded-md hover:scale-120 transition"
               />
+              <h2
+                className="
+      absolute bottom--2 left-1/2 -translate-x-1/2
+      hidden group-hover:block
+      text-center w-full
+       text-xl font-bold bg-accent truncate text-accent-foreground px-2 py-1
+      rounded hover: scale-120
+    "
+              >
+                {movie.title}
+              </h2>
             </div>
           ))}
         </div>
