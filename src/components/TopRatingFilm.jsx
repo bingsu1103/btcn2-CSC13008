@@ -47,6 +47,10 @@ const TopRatingFilm = () => {
 
   const visibleMovies = movies.slice(currentIndex, currentIndex + SLIDE_STEP);
 
+  const directedToMovies = (id) => {
+    navigate(`/movies/${id}`);
+  };
+
   return (
     <section className="mb-10">
       <h3 className="text-lg font-semibold mb-4">Top Rating</h3>
@@ -64,7 +68,7 @@ const TopRatingFilm = () => {
           {visibleMovies.map((movie) => (
             <div
               onClick={() => {
-                navigate(`/movies/${movie.id}`);
+                directedToMovies(movie.id);
               }}
             >
               <img
