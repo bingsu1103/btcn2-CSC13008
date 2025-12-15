@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import apiMovie from "@/services/apiMovie";
+import { Link, useNavigate, useNavigation } from "react-router-dom";
 
 const PAGE_SIZE = 30;
 const SLIDE_STEP = 3;
@@ -9,6 +10,7 @@ const TopRatingFilm = () => {
   const [page, setPage] = useState(1);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadMovies(1);
@@ -53,23 +55,32 @@ const TopRatingFilm = () => {
         <button
           onClick={prev}
           disabled={currentIndex === 0}
-          className="text-2xl text-gray-400 disabled:opacity-30"
+          className="cursor-pointer text-2xl text-gray-400 disabled:opacity-30"
         >
           ‹
         </button>
 
         <div className="grid grid-cols-3 gap-4 mx-4">
           {visibleMovies.map((movie) => (
-            <img
-              key={movie.id}
-              src={movie.image}
-              alt={movie.title}
-              className="w-70 rounded-md hover:scale-105 transition"
-            />
+            <div
+              onClick={() => {
+                navigate(`/movies/${movie.id}`);
+              }}
+            >
+              <img
+                key={movie.id}
+                src={movie.image}
+                alt={movie.title}
+                className="w-60 rounded-md hover:scale-120 transition"
+              />
+            </div>
           ))}
         </div>
 
-        <button onClick={next} className="text-2xl text-gray-400">
+        <button
+          onClick={next}
+          className="cursor-pointer text-2xl text-gray-400"
+        >
           ›
         </button>
       </div>

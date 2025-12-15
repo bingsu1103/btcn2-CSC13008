@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import apiMovie from "@/services/apiMovie";
+import { useNavigate } from "react-router-dom";
 
 const HERO_LIMIT = 5;
 
@@ -7,6 +8,7 @@ const HeroSlider = () => {
   const [movies, setMovies] = useState([]);
   const [index, setIndex] = useState(0);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadHeroMovies = async () => {
@@ -39,21 +41,27 @@ const HeroSlider = () => {
 
   return (
     <div className="relative flex justify-center mb-12">
-      <img
-        src={movie.image}
-        alt={movie.title}
-        className="w-[300px] rounded-lg shadow-lg"
-      />
+      <div
+        onClick={() => {
+          navigate(`/movies/${movie.id}`);
+        }}
+      >
+        <img
+          src={movie.image}
+          alt={movie.title}
+          className="w-[300px] cursor-pointer rounded-lg shadow-lg"
+        />
+      </div>
 
       <button
         onClick={prev}
-        className="absolute left-0 top-1/2 -translate-y-1/2 text-3xl text-gray-400 hover:text-white"
+        className="cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 text-3xl text-gray-400 hover:text-white"
       >
         ‹
       </button>
       <button
         onClick={next}
-        className="absolute right-0 top-1/2 -translate-y-1/2 text-3xl text-gray-400 hover:text-white"
+        className="cursor-pointer absolute right-0 top-1/2 -translate-y-1/2 text-3xl text-gray-400 hover:text-white"
       >
         ›
       </button>
