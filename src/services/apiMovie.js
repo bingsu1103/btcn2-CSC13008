@@ -97,6 +97,26 @@ const apiMovie = {
 
     return response.json();
   },
+  searchMovie: async (title) => {
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
+    const appToken = import.meta.env.VITE_X_APP_TOKEN;
+
+    const response = await fetch(
+      `${backendUrl}/api/movies/search?title=${title}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "x-app-token": appToken,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Search movie failed");
+    }
+
+    return response.json();
+  },
 };
 
 export default apiMovie;
