@@ -5,6 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import ActorHeader from "@/components/ActorHeader";
 
 import apiPerson from "@/services/apiPerson";
+import ActorInfo from "@/components/ActorInfo";
 
 const ActorDetail = () => {
   const { id } = useParams();
@@ -40,6 +41,7 @@ const ActorDetail = () => {
   return (
     <div className="container mx-auto px-6 py-10 space-y-10">
       <ActorHeader actor={actor} />
+      <ActorInfo actor={actor} />
     </div>
   );
 };
