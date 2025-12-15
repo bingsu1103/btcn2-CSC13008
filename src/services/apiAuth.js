@@ -24,6 +24,28 @@ const apiAuth = {
 
     return response.json();
   },
+  login: async (payload) => {
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
+    const appToken = import.meta.env.VITE_X_APP_TOKEN;
+
+    const response = await fetch(`${backendUrl}/api/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-app-token": appToken,
+      },
+      body: JSON.stringify({
+        username: payload.username,
+        password: payload.password,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Login failed");
+    }
+
+    return response.json();
+  },
   fetch: async () => {
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
     const appToken = import.meta.env.VITE_X_APP_TOKEN;

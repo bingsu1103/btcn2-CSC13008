@@ -6,15 +6,29 @@ const AuthContext = createContext(null);
 export const AuthContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
 
   useEffect(() => {
     const fetchAccount = async () => {
-      const res = await apiAuth.fetch();
-      if (res.user) {
-        setUser(res.user);
-        setIsAuthenticated(true);
+      try {
+        const token = localStorage.getItem("accessToken");
+        if (!token) {
+          setIsAuthLoading(false);
+          return;
+        }
+
+        const res = await apiAuth.fetch();
+        if (res) {
+          setUser(res);
+          setIsAuthenticated(true);
+        }
+      } catch (e) {
+        localStorage.removeItem("accessToken");
+      } finally {
+        setIsAuthLoading(false);
       }
     };
+
     fetchAccount();
   }, []);
 
@@ -25,6 +39,7 @@ export const AuthContextProvider = ({ children }) => {
         setIsAuthenticated,
         user,
         setUser,
+        isAuthLoading,
       }}
     >
       {children}
@@ -33,9 +48,7 @@ export const AuthContextProvider = ({ children }) => {
 };
 
 export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within AuthContextProvider");
-  }
-  return context;
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error("useAuth must be used within AuthContextProvider");
+  return ctx;
 };

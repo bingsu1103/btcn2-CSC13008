@@ -10,6 +10,7 @@ import Movies from "@/pages/Movie";
 import Register from "@/pages/Register";
 import { AuthContextProvider } from "@/contexts/AuthContext";
 import Login from "@/pages/Login";
+import GuestRoute from "@/contexts/GuestRoute";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login />,
+        element: (
+          <GuestRoute>
+            <Login />
+          </GuestRoute>
+        ),
       },
     ],
   },

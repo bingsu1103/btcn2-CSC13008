@@ -15,6 +15,8 @@ import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import apiAuth from "@/services/apiAuth";
+import { useAuth } from "@/contexts/AuthContext";
+import { useEffect } from "react";
 
 const loginSchema = z.object({
   username: z.string().min(3, "Username phải ít nhất 3 ký tự"),
@@ -23,6 +25,7 @@ const loginSchema = z.object({
 
 const Login = () => {
   const navigate = useNavigate();
+  const { isAuthenticated, setIsAuthenticated, setUser } = useAuth();
 
   const form = useForm({
     resolver: zodResolver(loginSchema),
@@ -38,15 +41,11 @@ const Login = () => {
       const response = await apiAuth.login(values);
 
       if (response?.user) {
+        setUser(response.user);
+        setIsAuthenticated(true);
+        localStorage.setItem("accessToken", response.token);
         toast.success(response.message || "Login successful");
-
-        // clear input
         form.reset();
-
-        // redirect về home
-        setTimeout(() => {
-          navigate("/");
-        }, 500);
         return;
       }
 
