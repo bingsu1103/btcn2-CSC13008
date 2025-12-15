@@ -6,13 +6,15 @@ import { Toaster } from "./components/ui/sonner";
 
 const App = () => {
   return (
-    <>
+    <main className="min-h-screen flex flex-col">
       <Toaster richColors position="top-right" />
       <Header />
       <NavBar />
-      <Outlet />
+      <div className="flex-1">
+        <Outlet />
+      </div>
       <Footer />
-    </>
+    </main>
   );
 };
 export default App;
