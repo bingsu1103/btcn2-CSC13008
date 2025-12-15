@@ -6,6 +6,7 @@ import Home from "@/pages/Home";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import MovieDetail from "@/pages/MovieDetail";
 import ActorDetail from "@/pages/ActorDetail";
+import Movies from "@/pages/Movie";
 
 const router = createBrowserRouter([
   {
@@ -18,11 +19,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/movies/:id",
-        element: <MovieDetail></MovieDetail>,
+        element: <MovieDetail />,
       },
       {
         path: "/actors/:id",
-        element: <ActorDetail></ActorDetail>,
+        element: <ActorDetail />,
+      },
+      {
+        path: "/movies",
+        element: <Movies />,
       },
     ],
   },

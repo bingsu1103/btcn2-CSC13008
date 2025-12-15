@@ -97,12 +97,12 @@ const apiMovie = {
 
     return response.json();
   },
-  searchMovie: async (title) => {
+  searchMovie: async (title, page, limit) => {
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
     const appToken = import.meta.env.VITE_X_APP_TOKEN;
 
     const response = await fetch(
-      `${backendUrl}/api/movies/search?title=${title}`,
+      `${backendUrl}/api/movies/search?title=${title}&page=${page}&limit=${limit}`,
       {
         headers: {
           "Content-Type": "application/json",
