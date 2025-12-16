@@ -17,10 +17,10 @@ import apiAuth from "@/services/apiAuth";
 import { toast } from "sonner";
 
 const registerSchema = z.object({
-  username: z.string().min(3, "Username phải ít nhất 3 ký tự"),
+  username: z.string().min(3, "Username phải ít nhất 2 ký tự"),
   email: z.string().email("Email không hợp lệ"),
   password: z.string().min(6, "Password phải ít nhất 6 ký tự"),
-  phone: z.string().min(9, "Số điện thoại không hợp lệ"),
+  phone: z.string().min(9, "Số điện thoại ít nhất 10 số"),
   dob: z.string().nonempty("Vui lòng chọn ngày sinh"),
 });
 
