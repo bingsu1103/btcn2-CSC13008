@@ -10,6 +10,7 @@ import { toast } from "sonner";
 const NavBar = () => {
   const [keyword, setKeyword] = useState("");
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const handleSearch = () => {
     if (!keyword.trim()) return;
@@ -68,7 +69,7 @@ const NavBar = () => {
         )}
       </nav>
 
-      <div className="flex gap-2">
+      <div className="flex gap-2 items-center">
         {!isAuthenticated ? (
           <>
             <Button
@@ -89,14 +90,17 @@ const NavBar = () => {
             </Button>
           </>
         ) : (
-          <Button
-            onClick={() => handleLogOut()}
-            variant="outline"
-            size="sm"
-            className="bg-transparent text-green-400 border border-green-400 cursor-pointer"
-          >
-            Logout
-          </Button>
+          <div className="flex gap-3 items-center">
+            <span>{user.username}</span>
+            <Button
+              onClick={() => handleLogOut()}
+              variant="outline"
+              size="sm"
+              className="bg-transparent text-green-400 border border-green-400 cursor-pointer"
+            >
+              Logout
+            </Button>
+          </div>
         )}
         <Input
           className="w-60 bg-background"
