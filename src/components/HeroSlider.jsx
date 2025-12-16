@@ -1,8 +1,25 @@
 import { useEffect, useState } from "react";
 import apiMovie from "@/services/apiMovie";
 import { useNavigate } from "react-router-dom";
+import { Skeleton } from "./ui/skeleton";
 
 const HERO_LIMIT = 5;
+
+const HeroSliderSkeleton = () => {
+  return (
+    <div className="relative flex justify-center mb-12">
+      <Skeleton className="w-[300px] h-[450px] rounded-lg" />
+
+      <Skeleton className="absolute left-0 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full" />
+      <Skeleton className="absolute right-0 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full" />
+
+      <div className="absolute bottom-6 space-y-2 text-center">
+        <Skeleton className="h-5 w-48 mx-auto" />
+        <Skeleton className="h-4 w-32 mx-auto" />
+      </div>
+    </div>
+  );
+};
 
 const HeroSlider = () => {
   const [movies, setMovies] = useState([]);
@@ -26,7 +43,7 @@ const HeroSlider = () => {
     loadHeroMovies();
   }, []);
 
-  if (loading) return <div className="mb-12 text-gray-400">Loading hero…</div>;
+  if (loading) return <HeroSliderSkeleton />;
   if (!movies.length) return null;
 
   const next = () => {

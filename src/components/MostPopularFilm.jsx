@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import apiMovie from "@/services/apiMovie";
 import { useNavigate } from "react-router-dom";
+import MovieRowSkeleton from "./MovieRowSkeleton";
 
 const PAGE_SIZE = 30;
 const SLIDE_STEP = 3;
@@ -49,6 +50,9 @@ const TopRatingFilm = () => {
   const directedToMovies = (id) => {
     navigate(`/movies/${id}`);
   };
+  if (!movies.length && isLoading) {
+    return <MovieRowSkeleton />;
+  }
 
   return (
     <section className="mb-10">
