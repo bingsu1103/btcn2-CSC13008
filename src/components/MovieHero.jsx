@@ -19,7 +19,7 @@ const MovieHero = ({ movie, isFavorite, onToggleFavorite }) => {
             <h1 className="text-3xl font-bold">{movie.full_title}</h1>
             <Button
               onClick={onToggleFavorite}
-              className={`flex items-center gap-2 mt-4 transition`}
+              className={`cursor-pointer flex items-center gap-2 mt-4 transition`}
             >
               <Heart className={isFavorite ? "fill-red-500" : ""} />
               {isFavorite ? "Đã yêu thích" : "Thêm vào yêu thích"}

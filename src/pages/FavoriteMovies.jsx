@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import apiUser from "@/services/apiUser";
 import MovieCard from "@/components/MovieCard";
+import { toast } from "sonner";
+import { Skeleton } from "@/components/ui/skeleton";
+import SkeletonMovie from "@/components/SkeletonMovie";
 
 const FavoriteMovies = () => {
   const [movies, setMovies] = useState([]);
@@ -25,7 +28,16 @@ const FavoriteMovies = () => {
   }, []);
 
   const handleRemoveFavorite = async (movieId) => {
-    // log
+    try {
+      await apiUser.removeFavoriteMovie(movieId);
+
+      setMovies((prev) => prev.filter((m) => m.id !== movieId));
+
+      toast.success("Đã xoá khỏi danh sách yêu thích");
+    } catch (err) {
+      console.error(err);
+      toast.error("Xoá phim yêu thích thất bại");
+    }
   };
 
   return (
@@ -34,7 +46,13 @@ const FavoriteMovies = () => {
         🎬 <span className="text-red-500">Film yêu thích</span>
       </h2>
 
-      {loading && <p>Loading...</p>}
+      {loading && (
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {Array.from({ length: 10 }).map((_, index) => (
+            <SkeletonMovie key={index} />
+          ))}
+        </div>
+      )}
 
       {!loading && movies.length === 0 && (
         <p>Bạn chưa có film yêu thích nào.</p>
