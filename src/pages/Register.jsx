@@ -140,7 +140,7 @@ const Register = () => {
                 )}
               />
 
-              <Button className="w-full" type="submit">
+              <Button className="cursor-pointer w-full" type="submit">
                 Register
               </Button>
 

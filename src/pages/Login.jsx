@@ -99,7 +99,7 @@ const Login = () => {
                 )}
               />
 
-              <Button className="w-full" type="submit">
+              <Button className="cursor-pointer w-full" type="submit">
                 Login
               </Button>
 
