@@ -16,12 +16,18 @@ const Movies = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!query) return;
-
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await apiMovie.searchMovie(query, page, PAGE_SIZE);
+
+        let res;
+
+        if (query) {
+          res = await apiMovie.searchMovie(query, page, PAGE_SIZE);
+        } else {
+          res = await apiMovie.fetchAllMovie(page, PAGE_SIZE);
+        }
+
         setMovies(res.data);
         setPagination(res.pagination);
       } catch (err) {

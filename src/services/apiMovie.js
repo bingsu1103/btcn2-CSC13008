@@ -117,6 +117,26 @@ const apiMovie = {
 
     return response.json();
   },
+  getAllMovies: async () => {
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
+    const appToken = import.meta.env.VITE_X_APP_TOKEN;
+
+    const response = await fetch(
+      `${backendUrl}/api/movies?page=${page}&limit=${limit}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "x-app-token": appToken,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Fetch all movie failed");
+    }
+
+    return response.json();
+  },
 };
 
 export default apiMovie;
