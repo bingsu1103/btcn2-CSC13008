@@ -13,6 +13,7 @@ import Login from "@/pages/Login";
 import GuestRoute from "@/contexts/GuestRoute";
 import ProtectedRoute from "./contexts/ProtectedRoute";
 import UserProfile from "./pages/UserProfile";
+import FavoriteMovies from "./pages/FavoriteMovies";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/movies",
         element: <Movies />,
+      },
+      {
+        path: "/favorite/movies",
+        element: <FavoriteMovies />,
       },
       {
         path: "/register",
