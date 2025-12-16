@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import apiUser from "@/services/apiUser";
 import { useAuth } from "@/contexts/AuthContext";
+import { Link } from "react-router-dom";
 
 const updateSchema = z.object({
   email: z.string().email("Email không hợp lệ"),
@@ -51,7 +52,12 @@ const UserProfile = () => {
     <div className="max-w-xl mx-auto mt-10">
       <Card>
         <CardHeader>
-          <CardTitle>User Profile</CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle>User Profile</CardTitle>
+            <Link to="/favorite/movies">
+              <Button className="cursor-pointer">Favorite film</Button>
+            </Link>
+          </div>
         </CardHeader>
 
         <CardContent className="space-y-6">

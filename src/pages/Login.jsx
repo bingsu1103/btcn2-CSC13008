@@ -16,16 +16,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import apiAuth from "@/services/apiAuth";
 import { useAuth } from "@/contexts/AuthContext";
-import { useEffect } from "react";
 
 const loginSchema = z.object({
-  username: z.string().min(3, "Username phải ít nhất 3 ký tự"),
+  username: z.string().min(3, "Username phải ít nhất 2 ký tự"),
   password: z.string().min(6, "Password phải ít nhất 6 ký tự"),
 });
 
 const Login = () => {
-  const navigate = useNavigate();
-  const { isAuthenticated, setIsAuthenticated, setUser } = useAuth();
+  const { setIsAuthenticated, setUser } = useAuth();
 
   const form = useForm({
     resolver: zodResolver(loginSchema),
