@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback, useMemo } from "react";
 import apiUser from "@/services/apiUser";
+import { toast } from "sonner";
 
 export default function useFavoriteMovies() {
   const [favorites, setFavorites] = useState([]);
@@ -64,7 +65,9 @@ export default function useFavoriteMovies() {
     (movie) => {
       if (favoriteIds.has(movie.id)) {
         removeFavorite(movie.id);
+        toast.error("Đã xoá khỏi danh sách phim yêu thích");
       } else {
+        toast.success("Đã thêm vào danh sách phim yêu thích");
         addFavorite(movie);
       }
     },
