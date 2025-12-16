@@ -59,6 +59,26 @@ const apiUser = {
 
     return response.json();
   },
+  removeFavoriteMovie: async (id) => {
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
+    const appToken = import.meta.env.VITE_X_APP_TOKEN;
+    const accessToken = localStorage.getItem("accessToken");
+
+    const response = await fetch(`${backendUrl}/api/users/favorites/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "x-app-token": appToken,
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Delete from list favorite film failed");
+    }
+
+    return response.json();
+  },
 };
 
 export default apiUser;

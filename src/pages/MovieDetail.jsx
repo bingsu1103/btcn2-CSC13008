@@ -7,12 +7,13 @@ import MovieHero from "@/components/MovieHero";
 import MovieOverview from "@/components/MovieOverview";
 import CastSection from "@/components/CastSection";
 import ReviewSection from "@/components/ReviewSection";
-// import ReviewSection from "@/components/ReviewSection";
+import useFavoriteMovies from "@/components/hooks/useFavorite";
 
 const MovieDetail = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { isFavorite, toggleFavorite } = useFavoriteMovies();
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -42,7 +43,11 @@ const MovieDetail = () => {
 
   return (
     <div className="container mx-auto px-6 py-10 space-y-10">
-      <MovieHero movie={movie} />
+      <MovieHero
+        movie={movie}
+        isFavorite={isFavorite(movie.id)}
+        onToggleFavorite={() => toggleFavorite(movie)}
+      />
       <MovieOverview movie={movie} />
       <CastSection actors={movie.actors} />
       <ReviewSection />

@@ -1,9 +1,10 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Clock, Star, Film } from "lucide-react";
+import { Clock, Star, Film, Heart } from "lucide-react";
+import { Button } from "./ui/button";
 
-const MovieHero = ({ movie }) => {
+const MovieHero = ({ movie, isFavorite, onToggleFavorite }) => {
   return (
     <Card>
       <CardContent className="flex flex-col md:flex-row gap-6 p-6">
@@ -14,7 +15,16 @@ const MovieHero = ({ movie }) => {
         />
 
         <div className="flex-1 space-y-4">
-          <h1 className="text-3xl font-bold">{movie.full_title}</h1>
+          <div className="flex gap-10 items-center">
+            <h1 className="text-3xl font-bold">{movie.full_title}</h1>
+            <Button
+              onClick={onToggleFavorite}
+              className={`flex items-center gap-2 mt-4 transition`}
+            >
+              <Heart className={isFavorite ? "fill-red-500" : ""} />
+              {isFavorite ? "Đã yêu thích" : "Thêm vào yêu thích"}
+            </Button>
+          </div>
 
           <div className="flex flex-wrap gap-2">
             {movie.genres.map((g) => (
