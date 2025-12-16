@@ -5,6 +5,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     <div className="flex justify-center items-center gap-2 mt-6">
       <Button
         variant="outline"
+        className="cursor-pointer"
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
       >
@@ -16,6 +17,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       </span>
 
       <Button
+        className="cursor-pointer"
         variant="outline"
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
