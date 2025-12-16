@@ -11,6 +11,8 @@ import Register from "@/pages/Register";
 import { AuthContextProvider } from "@/contexts/AuthContext";
 import Login from "@/pages/Login";
 import GuestRoute from "@/contexts/GuestRoute";
+import ProtectedRoute from "./contexts/ProtectedRoute";
+import UserProfile from "./pages/UserProfile";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
           <GuestRoute>
             <Login />
           </GuestRoute>
+        ),
+      },
+      {
+        path: "/user/profile",
+        element: (
+          <ProtectedRoute>
+            <UserProfile />
+          </ProtectedRoute>
         ),
       },
     ],

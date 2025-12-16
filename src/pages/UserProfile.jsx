@@ -14,6 +14,8 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
+import apiUser from "@/services/apiUser";
+import { useAuth } from "@/contexts/AuthContext";
 
 const updateSchema = z.object({
   email: z.string().email("Email không hợp lệ"),
@@ -21,7 +23,8 @@ const updateSchema = z.object({
   dob: z.string().nonempty("Vui lòng chọn ngày sinh"),
 });
 
-const UserProfile = ({ user }) => {
+const UserProfile = () => {
+  const { user, isAuthLoading } = useAuth();
   const form = useForm({
     resolver: zodResolver(updateSchema),
     defaultValues: {
@@ -31,7 +34,14 @@ const UserProfile = ({ user }) => {
     },
   });
 
-  const onSubmit = async (values) => {};
+  const onSubmit = async (values) => {
+    try {
+      await apiUser.updateUser(values);
+      toast.success("Cập nhật thông tin thành công");
+    } catch (e) {
+      toast.error("Cập nhật thất bại");
+    }
+  };
 
   return (
     <div className="max-w-xl mx-auto mt-10">
