@@ -38,7 +38,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/favorite/movies",
-        element: <FavoriteMovies />,
+        element: (
+          <ProtectedRoute>
+            <FavoriteMovies />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/register",
