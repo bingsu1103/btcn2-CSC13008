@@ -24,13 +24,17 @@ const updateSchema = z.object({
 });
 
 const UserProfile = () => {
-  const { user, isAuthLoading } = useAuth();
+  const { user } = useAuth();
+  const formatDateForInput = (date) => {
+    if (!date) return "";
+    return date.split("T")[0];
+  };
   const form = useForm({
     resolver: zodResolver(updateSchema),
     defaultValues: {
       email: user.email || "",
       phone: user.phone || "",
-      dob: user.dob || "",
+      dob: formatDateForInput(user.dob) || "",
     },
   });
 
@@ -51,7 +55,6 @@ const UserProfile = () => {
         </CardHeader>
 
         <CardContent className="space-y-6">
-          {/* Thông tin readonly */}
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
               <p className="text-muted-foreground">User ID</p>
@@ -67,7 +70,6 @@ const UserProfile = () => {
             </div>
           </div>
 
-          {/* Form update */}
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
@@ -112,7 +114,7 @@ const UserProfile = () => {
                 )}
               />
 
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="cursor-pointer w-full">
                 Update profile
               </Button>
             </form>

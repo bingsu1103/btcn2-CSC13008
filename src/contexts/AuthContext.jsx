@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import apiAuth from "@/services/apiAuth";
+import { Loader2 } from "lucide-react";
 
 const AuthContext = createContext(null);
 
@@ -31,6 +32,13 @@ export const AuthContextProvider = ({ children }) => {
 
     fetchAccount();
   }, []);
+  if (isAuthLoading) {
+    return (
+      <div className="flex bg-background justify-center items-center h-screen">
+        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+      </div>
+    );
+  }
 
   return (
     <AuthContext.Provider
